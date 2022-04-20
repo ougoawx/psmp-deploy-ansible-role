@@ -5,7 +5,7 @@
     # Download the PSMP release from Blob
     - name: Download package from Azure Blob
       ansible.builtin.get_url:
-        src: "{{ psmp_zip_file_path }}"
+        url: "{{ psmp_zip_file_path }}"
         dest: "/tmp/psmp.zip"
       delegate_to: localhost
 
