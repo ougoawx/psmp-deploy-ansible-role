@@ -9,10 +9,15 @@
         dest: "/tmp/psmp.zip"
       delegate_to: localhost
 
+    - name: Cloning psmp deploy role on server
+      ansible.builtin.git:
+        repo: https://github.com/ougoawx/psmp-deploy-ansible-role.git
+        dest: /var/lib
+    
     # Run the PSMP deployment role
     - name: Get roles directory dirname
       set_fact:
-        roles_dirname: "https://github.com/ougoawx/psmp-deploy-ansible-role/blob/97cc1564f422944eb331720959e522c4bdb4a562/tasks/main.yml"
+        roles_dirname: "psmp-deploy-ansible-role"
     - name: PSMP Deployment
       include_role:
         name: "{{ roles_dirname }}"
