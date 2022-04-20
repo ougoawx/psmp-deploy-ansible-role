@@ -2,11 +2,10 @@
 - hosts: psmp
   gather_facts: yes
   tasks:
-    # Download the PSMP release from some bucket
-    - name: Download package from s3
-      aws_s3:
-        bucket: ofir-devel-bucket
-        object: "PSMSSH-RHELinux-Intel64-11.07.0.10.zip"
+    # Download the PSMP release from Blob
+    - name: Download package from Azure Blob
+      ansible.builtin.copy:
+        src: "{{ psmp_zip_file_path }}"
         dest: "/tmp/psmp.zip"
         mode: get
       delegate_to: localhost
@@ -25,10 +24,10 @@
         - psmp_post_install: true
         - psmp_validate_install: true
         - psmp_clean_install: true
-        - psmp_install_mode: "Integrated"
+        - psmp_install_mode: "Yes"
         - psmp_install_adbridge: true
         - psmp_harden_machine: true
-        - psmp_ignore_checksum: false
+        - psmp_ignore_checksum: true
         - psmp_with_selinux: true
         - accept_eula: "Yes"
         - psmp_zip_file_path: "/tmp/psmp.zip"
