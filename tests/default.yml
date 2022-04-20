@@ -12,7 +12,7 @@
     # Run the PSMP deployment role
     - name: Get roles directory dirname
       set_fact:
-        roles_dirname: "{{ playbook_dir | dirname | basename }}"
+        roles_dirname: "https://github.com/ougoawx/psmp-deploy-ansible-role/blob/97cc1564f422944eb331720959e522c4bdb4a562/tasks/main.yml"
     - name: PSMP Deployment
       include_role:
         name: "{{ roles_dirname }}"
